@@ -16,7 +16,7 @@ Or monkey-patch instead:
 
 Both will return an object containing various ways of representing that date: 
 
-```json
+```javascript
 { human: 'Tue Sep 02 2014 11:10:51 GMT+0200 (CEST)',
   datetime: '2014-09-02 09:10:51',
   date: '2014-09-02',
