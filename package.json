@@ -2,13 +2,13 @@
   "name": "date-expand",
   "version": "0.1.0",
   "description": "Expand a date into various representations of its constituent components, like 4-digit year, 2-digit year, month, two-digit month and so on. All strftime formats are included, and more. Use when you need serialized dates in logic-less templates.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/stdbrouw/date-expand"
+    "url": "git://github.com/stdbrouw/date-expand.git"
   },
   "keywords": [
     "date time datetime strftime format formatting"
@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/stdbrouw/date-expand/issues"
   },
-  "homepage": "https://github.com/stdbrouw/date-expand"
+  "homepage": "https://github.com/stdbrouw/date-expand",
+  "dependencies": {
+    "strftime": "^0.8.2"
+  }
 }
