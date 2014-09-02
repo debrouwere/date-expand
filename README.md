@@ -31,6 +31,7 @@ Both will return an object containing various ways of representing that date:
   seconds: 51,
   milliseconds: 299,
   timestamp: 1409649051299,
+  unix: 1409649051,
   offset: -120,
   a: 'Tue',
   A: 'Tuesday',
