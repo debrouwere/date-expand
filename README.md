@@ -10,7 +10,7 @@ Usage:
 
 Or monkey-patch instead:
 
-    Object.defineProperty(Date, 'expand', {value: require('date-expand')});
+    Object.defineProperty(Date.prototype, 'expand', {value: require('date-expand')});
     var date = new Date()
     console.log(date.expand());
 
