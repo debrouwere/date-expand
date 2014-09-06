@@ -1,11 +1,83 @@
 strftime = require 'strftime'
 
+
+SECOND = 1000
+MINUTE = SECOND * 60
+HOUR = MINUTE * 60
+DAY = HOUR * 24
+WEEK = DAY * 7
+MONTH = WEEK * 4.345
+YEAR = WEEK * 52
+
+milliseconds = (n) -> n
+seconds      = (n) -> n * SECOND
+minutes      = (n) -> n * MINUTE
+hours        = (n) -> n * HOUR
+days         = (n) -> n * DAY
+weeks        = (n) -> n * WEEK
+years        = (n) -> n * YEAR
+
+
+delta = (a, b) ->
+    b ?= new Date()
+    Math.abs a - b
+
+
+age =
+    tally:
+        years:
+            get: (date) ->
+                Math.floor years delta date
+        months:
+            get: (date) ->
+                Math.floor months delta date
+        weeks:
+            get: (date) ->
+                Math.floor weeks delta date
+        days:
+            get: (date) ->
+                Math.floor days delta date
+        hours:
+            get: (date) ->
+                Math.floor hours delta date
+        minutes:
+            get: (date) ->
+                Math.floor seconds delta date
+        seconds:
+            get: (date) ->
+                Math.floor seconds delta date
+    years:
+        get: (date) ->
+            Math.floor years delta date
+    months:
+        get: (date) ->
+            Math.floor months (delta date) % YEAR
+    weeks:
+        get: (date) ->
+            Math.floor weeks (delta date) % MONTHS
+    days:
+        get: (date) ->
+            Math.floor days (delta date) % WEEKS
+    hours:
+        get: (date) ->
+            Math.floor hours (delta date) % DAYS
+    minutes:
+        get: (date) ->
+            Math.floor hours (delta date) % HOURS
+    seconds:
+        get: (date) ->
+            Math.floor hours (delta date) % MINUTES
+
+
 components = 
     human: 
         description: 'a string representation of the date in American English'
         example: ''
         aliases: ['']
         get: (date) -> date.toString()
+    path:
+        description: 'short YYYY/MM/DD date, suitable as a filesystem path'
+        get: (date) -> date.toISOString()[..9].replace /\-/g, '/'
     datetime:
         description: 'date and clock time'
         get: (date) -> date.toISOString()[..18].replace 'T', ' ' 
@@ -115,56 +187,45 @@ components =
         description: 'day of the month, space-padded'
         range: [' 1', '31']
         example: '23'
-        get: (date) ->
     F:
         description: 'short YYYY-MM-DD date'
         aliases: ['%Y-%m-%d']
         example: '2001-08-23'
-        get: (date) ->
     g:
         description: 'week-based year, last two digits'
         range: ['00', '99']
         example: '01'
-        get: (date) ->
     G:
         description: 'week-based year'
         example: '2001'
-        get: (date) ->
     h:
         description: 'abbreviated month name'
         aliases: ['%b']
         example: 'Aug'
         localized: yes
-        get: (date) ->
     H:
         description: 'hour in 24h format'
         range: ['00', '23']
         example: '14'
-        get: (date) ->
     I:
         description: 'hour in 12h format'
         range: ['01', '12']
         example: '02'
-        get: (date) ->
     j:
         description: 'day of the year'
         range: ['001', '366']
         example: '235'
-        get: (date) ->
     m:
         description: 'month as a decimal number'
         range: ['01', '12']
         example: '08'
-        get: (date) ->
     M:
         description: 'minute'
         range: ['00', '59']
         example: '55'
-        get: (date) ->
     n:
         description: 'new-line character'
         example: '\n'
-        get: (date) -> '\n'
     p:
         description: 'AM or PM designation'
         example: 'PM'
