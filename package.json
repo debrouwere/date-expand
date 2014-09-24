@@ -1,6 +1,6 @@
 {
   "name": "date-expand",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Expand a date into various representations of its constituent components, like 4-digit year, 2-digit year, month, two-digit month and so on. All strftime formats are included, and more. Use when you need serialized dates in logic-less templates.",
   "main": "lib/index.js",
   "scripts": {

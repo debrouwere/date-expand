@@ -73,19 +73,20 @@ components =
     human: 
         description: 'a string representation of the date in American English'
         example: ''
-        aliases: ['']
         get: (date) -> date.toString()
     path:
         description: 'short YYYY/MM/DD date, suitable as a filesystem path'
-        get: (date) -> date.toISOString()[..9].replace /\-/g, '/'
+        aliases: ['%Y/%m/%d']
+        get: (date) -> strftime '%Y/%m/%d', date
     datetime:
         description: 'date and clock time'
-        get: (date) -> date.toISOString()[..18].replace 'T', ' ' 
+        aliases: ['%Y-%m-%d %H:%M']
+        get: (date) -> strftime '%Y-%m-%d %H:%M'
     date:
         description: 'short YYYY-MM-DD date'
         example: '2014-09-31'
-        aliases: ['']
-        get: (date) -> date.toISOString()[..9]
+        aliases: ['%Y-%m-%d']
+        get: (date) -> strftime '%Y-%m-%d', date
     time:
         description: 'ISO 8601 time format (HH:MM:SS)'
         example: '13:01:00'
